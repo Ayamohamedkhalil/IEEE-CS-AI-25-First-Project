@@ -63,7 +63,3 @@ def saveToFile():
     except Exception as e:
         print(f"Unexpected error while saving: {e}")
 
-
-loadFromFile()
-input()
-saveToFile()
