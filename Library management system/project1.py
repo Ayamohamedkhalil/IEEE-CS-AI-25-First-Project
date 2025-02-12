@@ -44,7 +44,14 @@ def addBook():
 
 def viewBooks():
 
-    pass
+    if len(booksDictionary) == 0:
+        print("No books found in the library.")
+    else:
+        for bookId, details in booksDictionary.items():
+            print(f"Book ID: {bookId}")
+            for key, value in details.items():
+                print(f"{key}: {value}")
+            print()
 
 
 def searchBook():
@@ -146,9 +153,9 @@ if __name__ == "__main__":
         case "5":
             deleteBook()
         case "6":
-            loadFromFile()
+          saveToFile()
         case "7":
-            saveToFile()
+            loadFromFile()
         case "8" :
             print("Exiting from the Library Management System ")    
             break    
