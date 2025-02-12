@@ -51,7 +51,8 @@ def searchBook():
     pass
 
 def updatebookDetails():
-    pass
+    print("Update book details")
+    
 
 def deleteBook():
     pass
