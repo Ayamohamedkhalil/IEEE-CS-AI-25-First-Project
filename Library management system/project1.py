@@ -1,9 +1,45 @@
 booksDictionary = dict()
-filePath ="Library_management_database.txt"
+filePath ="Library management system\Library_management_database.txt"
 
 def addBook():
-    print("input to the book")
+    bookId=input("Enter book Id : ")
+    while True:
+      if bookId in booksDictionary:  
+        print(f"Warning: Duplicate ID {bookId} found. Please enter a unique ID.")
+        bookId=input("Enter book Id : ")
+      else :
+        break  
+    title = input("Enter book title: ").strip()  # Remove leading/trailing spaces
 
+    while True:
+       if not title.replace(" ", "").isalpha() or title.isspace() or title == "":
+        print("Invalid format of book title. Please enter the book title again!")
+        title = input("Enter book title: ").strip()
+       else:
+        break
+
+  
+
+    author=input("Enter book author : ").strip()
+    while True:
+       if  not author.replace(" ", "").isalpha() or author.isspace() or author == "":
+            print("Invalid format of author name,Please Enter The Book Author Again !")
+            author=input("Enter book author : ").strip()
+       else:
+            break
+
+    publicationYear=input("Enter book publication year : ")
+    while True:
+        if not publicationYear.isnumeric()or int(publicationYear) <= 0 or int(publicationYear) >=2026:
+            print("Invalid format of publication year,Please Enter The Book Publication Year Again !")
+            publicationYear=input("Enter book publication year : ")
+        else:
+            break
+        
+    # genre=input("Enter book genre : ")
+    booksDictionary[bookId] = {"title":title, "author":author, "publicationYear":publicationYear}
+    print("Book added successfully!")
+   
 
 
 def viewBooks():
@@ -84,7 +120,8 @@ def saveToFile():
         print(f"Unexpected error while saving: {e}")
 
 if __name__ == "__main__":
-  while True :    
+  while True : 
+    print("=====================================================")   
     print("              Library Management System              ")
     print("=====================================================")
     print("1.Add book")
@@ -95,7 +132,7 @@ if __name__ == "__main__":
     print("6.Save to file")
     print("7.Load from file")
     print("8.Exit")
-
+    print("=====================================================")
     option=input("Enter Your Option (1-8) : ")
     match (option):
         case "1":
