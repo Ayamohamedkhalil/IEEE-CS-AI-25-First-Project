@@ -1,6 +1,26 @@
 booksDictionary = dict()
 filePath ="Library_management_database.txt"
 
+def addBook():
+    print("input to the book")
+
+
+
+def viewBooks():
+
+    pass
+
+
+def searchBook():
+    pass
+
+def updatebookDetails():
+    pass
+
+def deleteBook():
+    pass
+
+
 
 
 def loadFromFile():
@@ -63,3 +83,37 @@ def saveToFile():
     except Exception as e:
         print(f"Unexpected error while saving: {e}")
 
+if __name__ == "__main__":
+  while True :    
+    print("              Library Management System              ")
+    print("=====================================================")
+    print("1.Add book")
+    print("2.View books") 
+    print("3.Search to the books (By Id or By book title)")
+    print("4.Update book details (By Id or By title) ")
+    print("5.Delete book (By Id)")
+    print("6.Save to file")
+    print("7.Load from file")
+    print("8.Exit")
+
+    option=input("Enter Your Option (1-8) : ")
+    match (option):
+        case "1":
+           addBook()
+        case "2":
+            viewBooks()
+        case "3":
+            searchBook()
+        case "4":
+            updatebookDetails()
+        case "5":
+            deleteBook()
+        case "6":
+            loadFromFile()
+        case "7":
+            saveToFile()
+        case "8" :
+            print("Exiting from the Library Management System ")    
+            break    
+        case _:
+            print("Invalid option, Please try again !")          
