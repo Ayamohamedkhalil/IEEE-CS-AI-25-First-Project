@@ -106,13 +106,19 @@ def updatebookDetails():
         del booksDictionary[Found]  
     booksDictionary[newBookId] = {"title": title, "author": author, "publicationYear": publicationYear}
     print("Book Updated Successfully")  
+    
 def deleteBook():
     bookId=input("Enter Book Id : ")
+    while True :
+        if bookId.isspace() or bookId == "":
+            bookId=input("Please Enter The Right Book Id  : ")
+        else : 
+            break
     if bookId in booksDictionary:
         del booksDictionary[bookId]
         print("Book deleted successfully!")
-
-
+    else :
+        print("Book Is Not Found !")
 
 
 def loadFromFile():
