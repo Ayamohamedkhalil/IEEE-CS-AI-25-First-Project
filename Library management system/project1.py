@@ -1,5 +1,5 @@
 booksDictionary = dict()
-filePath ="Library management system\Library_management_database.txt"
+filePath ="Library management system\\Library_management_database.txt"
 
 def addBook():
     bookId=input("Enter book Id : ")
@@ -9,7 +9,7 @@ def addBook():
         bookId=input("Enter book Id : ")
       else :
         break  
-    title = input("Enter book title: ").strip()  # Remove leading/trailing spaces
+    title = input("Enter book title: ").strip() 
 
     while True:
        if not title.replace(" ", "").isalpha() or title.isspace() or title == "":
@@ -30,13 +30,11 @@ def addBook():
 
     publicationYear=input("Enter book publication year : ")
     while True:
-        if not publicationYear.isnumeric()or int(publicationYear) <= 0 or int(publicationYear) >=2026:
+        if not publicationYear.isnumeric() or int(publicationYear) <= 0 or int(publicationYear) >=2026:
             print("Invalid format of publication year,Please Enter The Book Publication Year Again !")
             publicationYear=input("Enter book publication year : ")
         else:
             break
-        
-    # genre=input("Enter book genre : ")
     booksDictionary[bookId] = {"title":title, "author":author, "publicationYear":publicationYear}
     print("Book added successfully!")
    
@@ -44,13 +42,21 @@ def addBook():
 
 def viewBooks():
 
-    pass
+    if len(booksDictionary) == 0:
+        print("No books found in the library.")
+    else:
+        for bookId, details in booksDictionary.items():
+            print(f"Book ID: {bookId}")
+            for key, value in details.items():
+                print(f"{key}: {value}")
+            print()
 
 
 def searchBook():
     pass
 
 def updatebookDetails():
+
     searchingPoint=input( "Enter Book Id or Book Title : ")
     while True :
         if searchingPoint.isspace() or searchingPoint == "":
@@ -82,6 +88,10 @@ def updatebookDetails():
         title = input("Enter New book title: ").strip()
        else:
         break
+
+    print("Update book details")
+    
+
 
     author=input("Enter New book author : ").strip()
     while True:
@@ -123,7 +133,7 @@ def deleteBook():
 
 def loadFromFile():
     global booksDictionary
-
+    booksDictionary = dict()
     try:
         with open(filePath, "r") as myfile:
             data = myfile.read().strip().split("\n\n")  # Read and split books by blank lines
@@ -141,7 +151,7 @@ def loadFromFile():
                 print(f"Warning: Skipping invalid book entry: {book}")
                 continue
             
-            bookId = int(bookDetails[0][1])
+            bookId = (bookDetails[0][1])
             if bookId in bookDetails:  # Check dublicate Id's
                 print(f"Warning: Duplicate ID {bookId} found. Skipping this entry: {book}")
                 continue
@@ -208,9 +218,9 @@ if __name__ == "__main__":
         case "5":
             deleteBook()
         case "6":
-            loadFromFile()
+          saveToFile()
         case "7":
-            saveToFile()
+            loadFromFile()
         case "8" :
             print("Exiting from the Library Management System ")    
             break    
