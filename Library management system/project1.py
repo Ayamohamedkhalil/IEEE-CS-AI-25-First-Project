@@ -51,11 +51,66 @@ def searchBook():
     pass
 
 def updatebookDetails():
-     print("Update ")
-    
+    searchingPoint=input( "Enter Book Id or Book Title : ")
+    while True :
+        if searchingPoint.isspace() or searchingPoint == "":
+            searchingPoint=input("Please Enter The Right Book Id or Book Title : ")
+        else : 
+            break
+    Found=None
+    for book in booksDictionary :
+        if searchingPoint == book or searchingPoint == booksDictionary[book]['title']:
+            Found=book
+            print("Here are the book details :")
+            print(f"Book ID: {book}")
+            print(f"Title: {booksDictionary[book]['title']}")
+            print(f"Author: {booksDictionary[book]['author']}")
+            print(f"Publication Year: {booksDictionary[book]['publicationYear']}")
+            print()
+            break
+    if Found is None :
+        print("Book Not Found!")
+        return    
+        
+    newBookId = input("Enter New Book ID (press Enter to keep the same): ").strip()
+    if newBookId == "":
+        newBookId = Found
+    title = input("Enter New book title: ").strip()  # Remove leading/trailing spaces
+    while True:
+       if not title.replace(" ", "").isalpha() or title.isspace() or title == "":
+        print("Invalid format of book title. Please enter the book title again!")
+        title = input("Enter New book title: ").strip()
+       else:
+        break
 
+    author=input("Enter New book author : ").strip()
+    while True:
+       if  not author.replace(" ", "").isalpha() or author.isspace() or author == "":
+            print("Invalid format of author name,Please Enter The Book Author Again !")
+            author=input("Enter New book author : ").strip()
+       else:
+            break
+
+    publicationYear=input("Enter New book publication year : ")
+    while True:
+        if not publicationYear.isnumeric() :
+            print("Invalid format of publication year,Please Enter The Book Publication Year Again !")
+            publicationYear=input("Enter New book publication year : ")
+        elif int(publicationYear) <= 0 or int(publicationYear) >=2026 :
+            print("Invalid Range of publication year,Please Enter The Book Publication Year Again!")
+            publicationYear=input("Enter book publication year : ")    
+        else:
+            break
+
+    if newBookId != Found:
+        del booksDictionary[Found]  
+    booksDictionary[newBookId] = {"title": title, "author": author, "publicationYear": publicationYear}
+    print("Book Updated Successfully")  
 def deleteBook():
-    pass
+    bookId=input("Enter Book Id : ")
+    if bookId in booksDictionary:
+        del booksDictionary[bookId]
+        print("Book deleted successfully!")
 
 
 
