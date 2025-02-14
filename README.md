@@ -1,5 +1,5 @@
 # IEEE-CS-AI-25-First-Project
- Description:
+
 The Library Management System is a console-based Python application designed to efficiently manage a library's inventory of books. It allows users to perform various operations such as adding, viewing, searching, updating, and deleting book records, as well as saving and loading the data to and from a file. This system ensures data consistency and integrity through comprehensive validation checks and error handling. 
 
 
