@@ -15,7 +15,7 @@ def addBook():
     title = input("Enter book title: ").strip() 
 
     while True:
-       if not title.replace(" ", "").isalpha() or title.isspace() or title == "":
+       if title.isspace() or title == "":
         print("Invalid format of book title. Please enter the book title again!")
         title = input("Enter book title: ").strip()
        else:
@@ -56,7 +56,29 @@ def viewBooks():
 
 
 def searchBook():
-    pass
+    searchKey = input("Enter Book ID or Book Title to search: ").strip()
+    
+    while not searchKey:  
+        print("Invalid input. Please enter a valid Book ID or Title.")
+        searchKey = input("Enter Book ID or Book Title to search: ").strip()
+    
+    found = False
+    for bookId, details in booksDictionary.items():
+      
+        if searchKey == bookId or searchKey.lower() == details["title"].lower():
+            print("\nBook found:")
+            print("===================================")
+            print(f"Book ID         : {bookId}")
+            print(f"Book Title      : {details['title']}")
+            print(f"Book Author     : {details['author']}")
+            print(f"Publication Year: {details['publicationYear']}")
+            print("===================================\n")
+            found = True
+            break
+    
+    if not found:
+        print("Book Not Found.")
+
 
 def updatebookDetails():
 
@@ -86,7 +108,7 @@ def updatebookDetails():
         newBookId = Found
     title = input("Enter New book title: ").strip()  # Remove leading/trailing spaces
     while True:
-       if not title.replace(" ", "").isalpha() or title.isspace() or title == "":
+       if   title.isspace() or title == "":
         print("Invalid format of book title. Please enter the book title again!")
         title = input("Enter New book title: ").strip()
        else:
