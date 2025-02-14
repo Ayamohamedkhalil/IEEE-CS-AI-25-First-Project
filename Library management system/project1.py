@@ -4,6 +4,9 @@ filePath ="Library management system\\Library_management_database.txt"
 def addBook():
     bookId=input("Enter book Id : ")
     while True:
+      if not bookId or bookId.isspace():
+          print("Invalid Format,Please Try again!")
+          bookId=input("Enter book Id :")
       if bookId in booksDictionary:  
         print(f"Warning: Duplicate ID {bookId} found. Please enter a unique ID.")
         bookId=input("Enter book Id : ")
