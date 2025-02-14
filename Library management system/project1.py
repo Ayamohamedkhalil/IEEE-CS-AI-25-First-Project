@@ -2,20 +2,20 @@ booksDictionary = dict()
 filePath ="Library management system\\Library_management_database.txt"
 
 def addBook():
-    bookId=input("Enter book Id : ")
+    bookId=input("Enter book Id : ").strip()
     while True:
-      if not bookId or bookId.isspace():
-          print("Invalid Format,Please Try again!")
-          bookId=input("Enter book Id :")
-      if bookId in booksDictionary:  
+      if not bookId or len(bookId.strip())==0 :
+          print("Invalid formar of Id,Please Try again!")
+          bookId=input("Enter book Id :").strip()
+      elif bookId in booksDictionary:  
         print(f"Warning: Duplicate ID {bookId} found. Please enter a unique ID.")
-        bookId=input("Enter book Id : ")
+        bookId=input("Enter book Id : ").strip()
       else :
         break  
     title = input("Enter book title: ").strip() 
 
     while True:
-       if title.isspace() or title == "":
+       if   title == "" or len(title.strip())==0:
         print("Invalid format of book title. Please enter the book title again!")
         title = input("Enter book title: ").strip()
        else:
@@ -25,7 +25,7 @@ def addBook():
 
     author=input("Enter book author : ").strip()
     while True:
-       if  not author.replace(" ", "").isalpha() or author.isspace() or author == "":
+       if  not author.replace(" ", "").isalpha() or len(author.strip())==0 or author == "":
             print("Invalid format of author name,Please Enter The Book Author Again !")
             author=input("Enter book author : ").strip()
        else:
@@ -33,8 +33,8 @@ def addBook():
 
     publicationYear=input("Enter book publication year : ")
     while True:
-        if not publicationYear.isnumeric() or int(publicationYear) <= 0 or int(publicationYear) >=2026:
-            print("Invalid format of publication year,Please Enter The Book Publication Year Again !")
+        if not publicationYear.isnumeric() or int(publicationYear) <= 0 or int(publicationYear) >=2026 or len(publicationYear.strip())==0 :
+            print("Invalid publication year,Please Enter The Book Publication Year Again !")
             publicationYear=input("Enter book publication year : ")
         else:
             break
@@ -58,7 +58,7 @@ def viewBooks():
 def searchBook():
     searchKey = input("Enter Book ID or Book Title to search: ").strip()
     
-    while not searchKey:  
+    while not searchKey or len(searchKey.strip()) == 0:  
         print("Invalid input. Please enter a valid Book ID or Title.")
         searchKey = input("Enter Book ID or Book Title to search: ").strip()
     
@@ -84,7 +84,7 @@ def updatebookDetails():
 
     searchingPoint=input( "Enter Book Id or Book Title : ")
     while True :
-        if searchingPoint.isspace() or searchingPoint == "":
+        if len(searchingPoint.strip())==0 or searchingPoint == "":
             searchingPoint=input("Please Enter The Right Book Id or Book Title : ")
         else : 
             break
@@ -104,11 +104,11 @@ def updatebookDetails():
         return    
         
     newBookId = input("Enter New Book ID (press Enter to keep the same): ").strip()
-    if newBookId == "":
+    if newBookId == "" or len(newBookId.strip())==0:
         newBookId = Found
     title = input("Enter New book title: ").strip()  # Remove leading/trailing spaces
     while True:
-       if   title.isspace() or title == "":
+       if   len(title.strip()) or title == "":
         print("Invalid format of book title. Please enter the book title again!")
         title = input("Enter New book title: ").strip()
        else:
@@ -120,7 +120,7 @@ def updatebookDetails():
 
     author=input("Enter New book author : ").strip()
     while True:
-       if  not author.replace(" ", "").isalpha() or author.isspace() or author == "":
+       if  not author.replace(" ", "").isalpha() or len(author.strip())==0 or author == "":
             print("Invalid format of author name,Please Enter The Book Author Again !")
             author=input("Enter New book author : ").strip()
        else:
@@ -131,7 +131,7 @@ def updatebookDetails():
         if not publicationYear.isnumeric() :
             print("Invalid format of publication year,Please Enter The Book Publication Year Again !")
             publicationYear=input("Enter New book publication year : ")
-        elif int(publicationYear) <= 0 or int(publicationYear) >=2026 :
+        elif int(publicationYear) <= 0 or int(publicationYear) >=2026 or len(publicationYear.strip())==0 :
             print("Invalid Range of publication year,Please Enter The Book Publication Year Again!")
             publicationYear=input("Enter book publication year : ")    
         else:
@@ -145,7 +145,7 @@ def updatebookDetails():
 def deleteBook():
     bookId=input("Enter Book Id : ")
     while True :
-        if bookId.isspace() or bookId == "":
+        if len(bookId) or bookId == "":
             bookId=input("Please Enter The Right Book Id  : ")
         else : 
             break
